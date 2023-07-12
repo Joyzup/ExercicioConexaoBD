@@ -1,0 +1,33 @@
+--CRIANDO UMA TABELA
+
+--create table usuarios(id_usuario SERIAL primary key, 
+--						nome varchar(255));
+
+
+--SELECIONANDO ALGO DENTRO DA TABELA
+select * from usuarios;
+--select nome from usuarios;
+--select status_usuario from usuarios;
+--select nome, limite_credito from usuarios;
+
+
+--INSERINDO DADOS NAS COLUNAS DA TABELA
+insert into usuarios(nome)
+values ('Joao');
+insert into usuarios(nome)
+values ('Maria');
+insert into usuarios(nome)
+values ('Lorena');
+insert into usuarios(nome)
+values ('Joyce');
+insert into usuarios(nome)
+values ('Rafaela');
+
+--ATUALIZANDO DADOS DAS COLUNAS DA TABELA
+--update usuarios set nome = 'Joyce' where nome = 'Joy';
+--update usuarios set limite_credito = '6000' where observacao = 'Gostaria de ter um limite maior';
+--update usuarios set status_usuario = 'false' where status_usuario = 'true';
+
+
+--DELETANDO DADOS DAS COLUNAS DA TABELA 
+--delete from usuarios where id_usuario = 3
