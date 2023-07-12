@@ -31,6 +31,18 @@ public class ConsultaService {
         }
     }
 
+    public void consultarNomes(){
+        String sql = "SELECT nome FROM usuarios";
+        try {
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()){
+                System.out.println("NOME: " + resultSet.getString("nome"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void inserirDados(String nome){
         String sql = "INSERT INTO usuarios (nome) VALUES ('" + nome + "') ";
         try {
@@ -60,6 +72,5 @@ public class ConsultaService {
             e.printStackTrace();
         }
     }
-
 
 }
