@@ -1,17 +1,14 @@
 package service;
 
-import connection.Conexao;
-
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import static connection.Conexao.getConnection;
 
-public class ConsultaService {
+public class UsuarioService {
     private Statement statement;
 
-    public ConsultaService(){
+    public UsuarioService(){
         try {
             statement = getConnection().createStatement();
         } catch (SQLException e){
@@ -24,7 +21,7 @@ public class ConsultaService {
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
-                System.out.println("ID: " + resultSet.getInt("id_usuario") + "NOME: " + resultSet.getString("nome"));
+                System.out.println("ID: " + resultSet.getInt("id_usuario") + " | NOME: " + resultSet.getString("nome"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,11 +29,11 @@ public class ConsultaService {
     }
 
     public void consultarPorColuna(String coluna){
-        String sql = "SELECT " + coluna + "FROM usuarios";
+        String sql = "SELECT " + coluna + " FROM usuarios";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
-                System.out.println("NOME: " + resultSet.getString("nome"));
+                System.out.println(coluna + ": " + resultSet.getString(coluna));
             }
         } catch (SQLException e) {
             e.printStackTrace();
