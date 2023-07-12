@@ -31,4 +31,14 @@ public class ConsultaService {
         }
     }
 
+    public void inserirDados(String nome){
+        String sql = "INSERT INTO usuarios (nome) VALUES '" + nome + "' ";
+        try {
+            statement.executeUpdate(sql);
+            System.out.println("Usuário " + nome + " adicionado com sucesso!");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 }
