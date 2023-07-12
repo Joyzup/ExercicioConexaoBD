@@ -7,9 +7,18 @@ import java.sql.SQLException;
 public class Conexao {
 
     public static Connection getConnection(){
+        Connection connection = null;
+
         try{
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/seuBanco",
-                    "seuUsuario", "suaSenha");
+
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/meireBank",
+                    "postgres", "puc@2015");
+
+            if (connection != null) {
+
+
+            }
+
             return connection;
         }catch (SQLException e){
             e.printStackTrace();
