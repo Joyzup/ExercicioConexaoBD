@@ -45,7 +45,17 @@ public class ConsultaService {
         String sql = "UPDATE usuarios SET nome = '" + nome + "' where id_usuario = '" + id + "' ";
         try {
             statement.executeUpdate(sql);
-            System.out.println("Usuário de ID " + id + "atualizado com sucesso!");
+            System.out.println("Usuário de ID " + id + " atualizado com sucesso!");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deletarDados(Long id){
+        String sql = "DELETE FROM usuarios WHERE id_usuario = '" + id + "' ";
+        try {
+            statement.executeUpdate(sql);
+            System.out.println("Usuário de ID " + id + " deletado com sucesso!");
         } catch (SQLException e){
             e.printStackTrace();
         }
