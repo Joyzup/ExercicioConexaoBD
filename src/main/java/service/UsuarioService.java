@@ -9,17 +9,7 @@ public class UsuarioService {
 
     Connection connection = Conexao.getConnection();
 
-
     public void listandoTodosUsuario(){
-
-        try {
-            if (connection != null) {
-
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
 
 
 
