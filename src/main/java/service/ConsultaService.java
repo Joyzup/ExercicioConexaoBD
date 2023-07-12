@@ -32,7 +32,7 @@ public class ConsultaService {
     }
 
     public void inserirDados(String nome){
-        String sql = "INSERT INTO usuarios (nome) VALUES '" + nome + "' ";
+        String sql = "INSERT INTO usuarios (nome) VALUES ('" + nome + "') ";
         try {
             statement.executeUpdate(sql);
             System.out.println("Usuário " + nome + " adicionado com sucesso!");
@@ -40,5 +40,16 @@ public class ConsultaService {
             e.printStackTrace();
         }
     }
+
+    public void atualizarDados(Long id, String nome){
+        String sql = "UPDATE usuarios SET nome = '" + nome + "' where id_usuario = '" + id + "' ";
+        try {
+            statement.executeUpdate(sql);
+            System.out.println("Usuário de ID " + id + "atualizado com sucesso!");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
