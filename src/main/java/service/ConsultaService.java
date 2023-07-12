@@ -31,8 +31,8 @@ public class ConsultaService {
         }
     }
 
-    public void consultarNomes(){
-        String sql = "SELECT nome FROM usuarios";
+    public void consultarPorColuna(String coluna){
+        String sql = "SELECT " + coluna + "FROM usuarios";
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
