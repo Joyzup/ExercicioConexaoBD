@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import connection.Conexao;
 import model.DadosTabela;
