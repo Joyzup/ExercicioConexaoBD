@@ -10,6 +10,9 @@ public class Usuario {
     private String cpf;
     private String email;
 
+    private String telefone;
+
+
     public Long getId_usuario() {
         return id_usuario;
     }

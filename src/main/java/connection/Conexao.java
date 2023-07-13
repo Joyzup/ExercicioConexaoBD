@@ -11,8 +11,8 @@ public class Conexao {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dbzupfood",
                     "postgres", "admin123");
 
-            if (connection != null) System.out.println("Banco conectado");
-            else System.out.println("Banco não fez conexão");
+            if (connection != null) System.out.println("\n--------------------\nBanco conectado\n--------------------\n");
+            else System.out.println("\n--------------------\nBanco não fez conexão\n--------------------\n");
 
             return connection;
         }catch (SQLException e){
