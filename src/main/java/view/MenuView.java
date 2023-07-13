@@ -11,10 +11,12 @@ import java.util.Scanner;
 public class MenuView {
     private Scanner scanner;
     private UsuarioService usuarioService;
+    private Usuario usuario;
 
     public MenuView(){
         scanner = new Scanner(System.in);
         usuarioService = new UsuarioService();
+        usuario = new Usuario();
     }
 
     public void iniciar(){
@@ -35,7 +37,8 @@ public class MenuView {
                 case 3:
                     System.out.print("Digite o nome do usuário: ");
                     String nome = scanner.nextLine();
-                    usuarioService.inserirDados(nome);
+                    usuario.setNome(nome);
+                    usuarioService.inserirDados(usuario.getNome());
                     break;
                 case 4:
                     System.out.print("Digite o ID do usuário: ");
@@ -43,7 +46,8 @@ public class MenuView {
                     scanner.nextLine();
                     System.out.print("Digite o novo nome do usuário: ");
                     String nomeAtualizado = scanner.nextLine();
-                    usuarioService.atualizarDados(idAtualizar, nomeAtualizado);
+                    usuario.setNome(nomeAtualizado);
+                    usuarioService.atualizarDados(idAtualizar, usuario.getNome());
                     break;
                 case 5:
                     System.out.print("Digite o ID do usuário: ");
