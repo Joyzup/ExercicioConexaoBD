@@ -15,6 +15,7 @@ usuarioService.listarUsuariosCadastrados();
 usuarioService.deletarDados();
 usuarioService.listarUsuariosCadastrados();
    usuarioService.listarUsuariosCadastrados();
+   usuarioService.listarUsuariosPeloNome();
     }
 
 

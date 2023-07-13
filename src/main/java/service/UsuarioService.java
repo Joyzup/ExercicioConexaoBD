@@ -32,28 +32,44 @@ statement.executeUpdate(sql);
         e.printStackTrace();
     }
 }
-    public   void listarUsuariosCadastrados(){
+    public   void listarUsuariosCadastrados() {
 
         try {
             if (connection != null) {
                 Statement statement = connection.createStatement();
                 String sql = "SELECT * from usuario";
                 ResultSet resultSet = statement.executeQuery(sql);
-          while (resultSet.next()){
-              Long idUsuario = resultSet.getLong("ide_usuario");
-              String nomeUsuario = resultSet.getString("nome_usuario");
-              System.out.println("id do usuário: " + idUsuario);
-              System.out.println("nome de usuário: " + nomeUsuario);
-          }
-          statement.close();
-          resultSet.close();
+                while (resultSet.next()) {
+                    Long idUsuario = resultSet.getLong("ide_usuario");
+                    String nomeUsuario = resultSet.getString("nome_usuario");
+                    System.out.println("id do usuário: " + idUsuario);
+                    System.out.println("nome de usuário: " + nomeUsuario);
+                }
+                statement.close();
+                resultSet.close();
             }
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+public void listarUsuariosPeloNome() {
+            try {
+                if (connection != null) {
+                    Statement statement = connection.createStatement();
+                    String sql = "SELECT * FROM usuario";
+                    ResultSet resultSet = statement.executeQuery(sql);
+                    while (resultSet.next()) {
+                        String nomeUsuario = resultSet.getString("nome_usuario");
+                        System.out.println("nome de usuário: " + nomeUsuario);
+                    }
+                }
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
 
-        }
+
+}
 
 
         
