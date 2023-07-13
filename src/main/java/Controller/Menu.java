@@ -1,5 +1,10 @@
-package model;
+package Controller;
 
+import connection.Conexao;
+import model.DadosTabela;
+import model.ModificarTabela;
+
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -9,16 +14,19 @@ public class Menu {
     ModificarTabela modificarTabela;
     Statement statement;
 
-    public Menu(Statement statement) {
+    public Menu() {
         this.input = new Scanner(System.in);
         this.dadosTabela = new DadosTabela();
         this.modificarTabela = new ModificarTabela();
-        this.statement = statement;
     }
 
     public void executar(){
         String opcao, nomeAntigo, novoNome;
-
+        try {
+            statement = Conexao.getConnection().createStatement();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         do {
             mostraMenu();
             opcao = input.nextLine();

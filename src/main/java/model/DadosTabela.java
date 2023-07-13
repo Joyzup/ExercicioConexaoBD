@@ -22,7 +22,7 @@ public class DadosTabela {
         try {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                System.out.println(" Nome: " + resultSet.getString("nome"));
+                System.out.println(resultSet.getString("nome"));
             }
         } catch (SQLException e){
             e.printStackTrace();
