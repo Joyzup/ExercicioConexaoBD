@@ -1,54 +1,58 @@
 package org.example;
 
-import java.sql.*;
+import connection.Conexao;
+import service.UsuarioServices;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
+        Connection connection = Conexao.getConnection();
+        Scanner entradaDoUsuario = new Scanner(System.in);
 
-        //Conexão com banco
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/zupfood",
-                    "postgres", "1234");
-            if(connection != null){
-                System.out.println("Banco de dados conectado!");
+
+        if (connection != null) {
+            try {
                 Statement statement = connection.createStatement();
-                insereDadosNoBanco(statement);
-                consultaTodosDadosNoBanco(statement);
-            }else{
-                System.out.println("Conexão com o banco de dados falhou!");
+                System.out.println("\n----------------------- BEM VINDE AO BANCO DE DADOS DA ZUP! -----------------------");
+
+
+                System.out.println("\nO nosso banco está assim atualmente: ");
+                UsuarioServices.consultaTodosDadosNoBanco(statement);
+
+
+                System.out.println("\n---- Digite o nome que deseja inserir no final da tabela: ");
+                String nomeInserir = entradaDoUsuario.nextLine();
+                UsuarioServices.insereDadosNoBanco(statement, nomeInserir);
+
+
+                System.out.println("\n---- Digite um nome para inserir no id 1: ");
+                String novoNome = entradaDoUsuario.nextLine();
+                UsuarioServices.atualizaDadosNoBanco(statement, novoNome);
+
+
+                System.out.println("\n---- Digite o nome que deseja deletar: ");
+                String nomeDeletar = entradaDoUsuario.nextLine();
+                UsuarioServices.deletaDadosNoBanco(statement, nomeDeletar);
+
+
+                System.out.println("\n---- Pressione enter para consultar os nomes que restaram!");
+                entradaDoUsuario.nextLine();
+                UsuarioServices.consultaNomesDoBanco(statement);
+
+
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        }catch (SQLException e){
-            e.printStackTrace();
+        } else {
+            System.out.println("Conexão com o banco de dados falhou!");
         }
     }
-
-
-    //Manipulação do banco
-
-    static void insereDadosNoBanco(Statement statement){
-        String sql = "insert into usuarios (nome) values ('Bruna')";
-        try{
-            statement.executeUpdate(sql);
-            System.out.println("Inserção feita com sucesso");
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-    }
-
-    static void consultaTodosDadosNoBanco(Statement statement){
-        String sql = "select * from usuarios";
-        try{
-            ResultSet resultSet = statement.executeQuery(sql);
-            while(resultSet.next()){
-                System.out.println("id: " + resultSet.getInt("id_usuario") + ", nome: " +
-                        resultSet.getString("nome"));
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-
-
 }
+
+
