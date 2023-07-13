@@ -1,9 +1,9 @@
 package connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
-
 
 //Conexão com banco
 public class Conexao {
@@ -23,6 +23,4 @@ public class Conexao {
         }
         return connection;
     }
-
-
 }
