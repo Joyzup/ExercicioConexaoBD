@@ -12,7 +12,8 @@ UsuarioService usuarioService = new UsuarioService();
 usuarioService.inserirDados();
 
 usuarioService.listarUsuariosCadastrados();
-
+usuarioService.deletarDados();
+usuarioService.listarUsuariosCadastrados();
    usuarioService.listarUsuariosCadastrados();
     }
 

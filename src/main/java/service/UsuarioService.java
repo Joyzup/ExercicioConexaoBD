@@ -20,9 +20,10 @@ statement.executeUpdate(sql);
 }
 }
 //duvida em relação a exclusão de dados.
+
 public void deletarDados(){
 
-    String sql = "DELETE FROM usuario where (ide_usuario, nome_usuario) values (2, 'bruna')";
+    String sql = "DELETE FROM usuario where (ide_usuario = 2)";
     try {
         Statement statement = connection.createStatement();
 statement.executeUpdate(sql);
