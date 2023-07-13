@@ -8,7 +8,7 @@ public class Conexao {
 
     public static Connection getConnection(){
         try{
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/seuBanco",
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Zupfood",
                     "seuUsuario", "suaSenha");
             return connection;
         }catch (SQLException e){
