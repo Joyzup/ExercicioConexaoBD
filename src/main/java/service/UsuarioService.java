@@ -39,6 +39,43 @@ public class UsuarioService {
         }
     }
 
+    public void buscandoUsuarioPeloCpf(String cpf){
+
+        try {
+            if (connection != null) {
+                String sql = "SELECT * FROM usuarios WHERE cpf = ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+
+                statement.setString(1, cpf);
+
+                ResultSet resultSet = statement.executeQuery();
+
+                if(resultSet.next()){
+                    Long idUsuario = resultSet.getLong("id_usuario");
+                    String nome = resultSet.getString("nome");
+                    String cpfCliente= resultSet.getString("cpf");
+                    String email = resultSet.getString("email");
+                    String telefone = resultSet.getString("telefone");
+
+                    System.out.println("-----------------------");
+                    System.out.println("ID: " + idUsuario);
+                    System.out.println("Nome: " + nome);
+                    System.out.println("CPF: " + cpfCliente);
+                    System.out.println("Email: " + email);
+                    System.out.println("Telefone: " + telefone);
+                    System.out.println("-----------------------");
+                } else {
+                    System.out.println("Não existe nenhum cadastro com este cpf");
+                }
+
+                resultSet.close();
+                statement.close();
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void adicionarUsuario(String nome, String cpf, String email, String telefone) {
         try {
@@ -66,13 +103,13 @@ public class UsuarioService {
         }
     }
 
-    public void removerUsuarioPorCPF(String cpf) {
+    public void removerUsuarioPorCPF(String cpfRemover) {
         try {
             if (connection != null) {
                 String sql = "DELETE FROM usuarios WHERE cpf = ?";
                 PreparedStatement statement = connection.prepareStatement(sql);
 
-                statement.setString(1, cpf);
+                statement.setString(1, cpfRemover);
 
                 int contaQuantasLinhasRemoveu = statement.executeUpdate();
 
@@ -103,9 +140,9 @@ public class UsuarioService {
                 int rowsAffected = statement.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    System.out.println("Dado alterado com sucesso!");
+                    System.out.println("==== Dado alterado com sucesso! ====");
                 } else {
-                    System.out.println("Nenhum dado encontrado com o CPF informado.");
+                    System.out.println("==== Nenhum dado encontrado com o CPF informado. ====");
                 }
 
                 statement.close();
