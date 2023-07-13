@@ -1,6 +1,7 @@
 import service.Comandos;
 import service.Menu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -20,39 +21,46 @@ public class Main {
 
         while (rodando) {
 
-            menu.MenuPrincipal();
-            int selecao = resposta.nextInt();
+            try {
+                menu.MenuPrincipal();
+                int selecao = resposta.nextInt();
 
-            switch (selecao) {
-                case 0:
-                    rodando = false;
-                    break;
-                case 1:
-                    comandos.consultarDados();
-                    break;
-                case 2:
-                    System.out.println("Digite o nome que deseja inserir:");
-                    resposta.nextLine();
-                    String nome = resposta.nextLine();
-                    comandos.inserirDados(nome);
-                    break;
-                case 3:
-                    System.out.println("Diga qual o id do nome que deseja alterar:");
-                    int id = resposta.nextInt();
-                    System.out.println("Diga qual o novo nome que deseja:");
-                    resposta.nextLine();
-                    nome = resposta.nextLine();
-                    comandos.atualizarDados(id, nome);
-                    break;
-                case 4:
-                    System.out.println("Digite o id do nome que deseja remover:");
-                    id = resposta.nextInt();
-                    comandos.removerDados(id);
-                    break;
-                case 5:
-                    System.out.println("Lista só com os nomes:");
-                    comandos.consultarApenasNomes();
-                    break;
+                switch (selecao) {
+                    case 0:
+                        rodando = false;
+                        break;
+                    case 1:
+                        comandos.consultarDados();
+                        break;
+                    case 2:
+                        System.out.println("Digite o nome que deseja inserir:");
+                        resposta.nextLine();
+                        String nome = resposta.nextLine();
+                        comandos.inserirDados(nome);
+                        break;
+                    case 3:
+                        System.out.println("Diga qual o id do nome que deseja alterar:");
+                        int id = resposta.nextInt();
+                        System.out.println("Diga qual o novo nome que deseja:");
+                        resposta.nextLine();
+                        nome = resposta.nextLine();
+                        comandos.atualizarDados(id, nome);
+                        break;
+                    case 4:
+                        System.out.println("Digite o id do nome que deseja remover:");
+                        id = resposta.nextInt();
+                        comandos.removerDados(id);
+                        break;
+                    case 5:
+                        System.out.println("Lista só com os nomes:");
+                        comandos.consultarApenasNomes();
+                        break;
+                    default:
+                        System.out.println("Entrada inválida");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida");
+                resposta.nextLine();
             }
 
         }
