@@ -40,7 +40,7 @@ public class MenuView {
                 case 4:
                     System.out.print("Digite o ID do usuário: ");
                     Long idAtualizar = scanner.nextLong();
-                    scanner.nextLine(); // Limpar o buffer do scanner
+                    scanner.nextLine();
                     System.out.print("Digite o novo nome do usuário: ");
                     String nomeAtualizado = scanner.nextLine();
                     usuarioService.atualizarDados(idAtualizar, nomeAtualizado);
@@ -48,7 +48,7 @@ public class MenuView {
                 case 5:
                     System.out.print("Digite o ID do usuário: ");
                     Long idDeletar = scanner.nextLong();
-                    scanner.nextLine(); // Limpar o buffer do scanner
+                    scanner.nextLine();
                     usuarioService.deletarDados(idDeletar);
                     break;
                 case 6:
