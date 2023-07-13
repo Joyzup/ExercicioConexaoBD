@@ -1,3 +1,4 @@
+import controller.Controller;
 import service.Comandos;
 import service.Menu;
 
@@ -9,9 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Menu menu = new Menu();
-        Comandos comandos = new Comandos();
-
-        Scanner resposta = new Scanner(System.in);
+        Controller controller = new Controller();
 
         System.out.println("Boas-vindas ao nosso bloco com os nomes dos nossos clientes ZupFood!");
         System.out.println("Aqui, só por curiosidade, armazenamos os primeiros nomes de quem já foi cliente nosso!");
@@ -23,44 +22,37 @@ public class Main {
 
             try {
                 menu.MenuPrincipal();
-                int selecao = resposta.nextInt();
+                int selecao = new Scanner(System.in).nextInt();
 
                 switch (selecao) {
                     case 0:
                         rodando = false;
+                        controller.sairPrograma();
                         break;
                     case 1:
-                        comandos.consultarDados();
+                        controller.consultarDados();
                         break;
                     case 2:
-                        System.out.println("Digite o nome que deseja inserir:");
-                        resposta.nextLine();
-                        String nome = resposta.nextLine();
-                        comandos.inserirDados(nome);
+                        controller.inserirDados();
                         break;
                     case 3:
-                        System.out.println("Diga qual o id do nome que deseja alterar:");
-                        int id = resposta.nextInt();
-                        System.out.println("Diga qual o novo nome que deseja:");
-                        resposta.nextLine();
-                        nome = resposta.nextLine();
-                        comandos.atualizarDados(id, nome);
+                        controller.atualizarDados();
                         break;
                     case 4:
-                        System.out.println("Digite o id do nome que deseja remover:");
-                        id = resposta.nextInt();
-                        comandos.removerDados(id);
+                        controller.removerDados();
                         break;
                     case 5:
-                        System.out.println("Lista só com os nomes:");
-                        comandos.consultarApenasNomes();
+                        controller.consultarSomenteNomes();
                         break;
                     default:
+                        System.out.println("");
                         System.out.println("Entrada inválida");
+                        System.out.println("");
                 }
             } catch (InputMismatchException e) {
+                System.out.println("");
                 System.out.println("Entrada inválida");
-                resposta.nextLine();
+                System.out.println("");
             }
 
         }

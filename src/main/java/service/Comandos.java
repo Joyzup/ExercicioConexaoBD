@@ -75,4 +75,13 @@ public class Comandos {
                 e.printStackTrace();
             }
         }
+
+        public void fecharConexao(){
+            Service();
+            try {
+                getConnection().close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 }
